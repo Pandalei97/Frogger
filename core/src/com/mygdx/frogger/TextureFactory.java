@@ -1,5 +1,12 @@
+/**
+ * 
+ */
 package com.mygdx.frogger;
 
+/**
+ * @author pandalei
+ *
+ */
 import java.util.ArrayList;
 
 
