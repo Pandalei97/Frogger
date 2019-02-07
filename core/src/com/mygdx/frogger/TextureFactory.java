@@ -16,6 +16,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class TextureFactory {
 	private static TextureFactory INSTANCE = null;
 	
+	private Texture fond = new Texture("Fond.png");
 	private Texture model = new Texture("Textures.png");
 	private ArrayList<TextureRegion> frogs = new ArrayList<TextureRegion>();
 	private ArrayList<TextureRegion> vehicles = new ArrayList<TextureRegion>();
@@ -25,12 +26,12 @@ public class TextureFactory {
 	private TextureRegion startPoint;
 	private TextureRegion road;
 	private TextureRegion dead;
-	private TextureRegion butterfly;
+	private TextureRegion fly;
 	private TextureRegion grass;
 	private TextureRegion destination;
 	private TextureRegion lotus;
 	
-	TextureFactory (){
+	private TextureFactory (){
 		frogs.add(new TextureRegion(model,0,0,52,60));
 		frogs.add(new TextureRegion(model,53,25,60,48));
 		frogs.add(new TextureRegion(model,112,19,60,54));
@@ -39,7 +40,7 @@ public class TextureFactory {
 		frogs.add(new TextureRegion(model,283,18,60,56));
 		frogs.add(new TextureRegion(model,343,31,55,39));
 		
-		vehicles.add(new TextureRegion(model,8,405,52,60));
+		vehicles.add(new TextureRegion(model,8,405,180,65));
 		vehicles.add(new TextureRegion(model,202,404,287,70));
 		vehicles.add(new TextureRegion(model,11,483,130,70));
 		vehicles.add(new TextureRegion(model,154,483,138,72));
@@ -65,64 +66,68 @@ public class TextureFactory {
 		road = new TextureRegion(model,317,158,82,82);
 		grass = new TextureRegion(model,407,158,82,82);
 		destination = new TextureRegion(model,498,158,82,82);
-		butterfly = new TextureRegion(model,82,171,46,50);
+		fly = new TextureRegion(model,82,171,46,50);
 		
 		lotus = new TextureRegion(model,6,168,63,60);
 		dead = new TextureRegion(model,302,333,66,51);
 		
 		
 	}
-	TextureFactory getInstance(){
+	public static TextureFactory getInstance(){
 		if(INSTANCE == null)
 			INSTANCE = new TextureFactory();
 		return INSTANCE;
 	}
 	
-	TextureRegion getTextureVehicle(int index) {
+	public Texture getFond() {
+		return fond;
+	}
+	
+	public TextureRegion getTextureVehicle(int index) {
 		return vehicles.get(index);
 	}
 	
-	TextureRegion getTextureFrog(int index) {
+	public TextureRegion getTextureFrog(int index) {
 		return frogs.get(index);
 	}
 	
-	TextureRegion getTextureTurtle(int index) {
+	public TextureRegion getTextureTurtle(int index) {
 		return turtles.get(index);
 	}
 	
-	TextureRegion getTextureWood(int index) {
+	public TextureRegion getTextureWood(int index) {
 		return woods.get(index);
 	}
 	
-	TextureRegion getTextureStartPoint() {
+	public TextureRegion getTextureStartPoint() {
 		return startPoint;
 	}
 	
-	TextureRegion getTextureRiver() {
+	public TextureRegion getTextureRiver() {
 		return river;
 	}
 	
-	TextureRegion getTextureRoad() {
+	public TextureRegion getTextureRoad() {
 		return road;
 	}
 	
-	TextureRegion getTextureGrass() {
+	public TextureRegion getTextureGrass() {
 		return grass;
 	}
 	
-	TextureRegion getTextureDestination() {
+	public TextureRegion getTextureDestination() {
 		return destination;
 	}
 	
-	TextureRegion getTextureButterfly() {
-		return butterfly;
+	public TextureRegion getTextureFly() {
+		return fly;
 	}
 	
-	TextureRegion getTextureLotus() {
+	public TextureRegion getTextureLotus() {
 		return lotus;
 	}
 	
-	TextureRegion getTextureDead() {
+	public TextureRegion getTextureDead() {
 		return dead;
 	}
 	

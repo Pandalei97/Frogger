@@ -9,38 +9,30 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 
 public class Frogger extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture fond;
-	TextureFactory allElements;
+	private GameScreen currentScreen;
+	private boolean init = false;
+	
+	public void setScreen(GameScreen screen) {
+		currentScreen = screen;
+		currentScreen.show();
+		currentScreen.render(0);
+	}
 	
 	@Override
 	public void create () {
-		//batch consomme bcp de mémoire, donc on suggère d'en avoir qu'un pour un jeu
-		//Et il faut penser à le disposer dans le méthode dispose()
-		batch = new SpriteBatch();
-		allElements = new TextureFactory();
-		fond = new Texture("Fond.png");
+		setScreen(new GameScreen());
 	}
 
 	@Override
 	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		
-		//All SpriteBatch methods must be between .begin() and . end()
-		batch.begin();
-		// Drawing goes here!
-		batch.draw(fond,0,0);
-		batch.draw(allElements.getTextureWood(1),0,0);
-		batch.draw(allElements.getTextureWood(2),40,50);
-		batch.draw(allElements.getTextureDead(),90, 190);
-		batch.end();
+		float deltaTime = Math.min(Gdx.graphics.getDeltaTime(), 1.0f / 60.0f);
+        if (currentScreen != null)
+           currentScreen.render(deltaTime);
 	}
 	
 	@Override
 	public void dispose () {
-		allElements.dispose();
-		batch.dispose();
-		fond.dispose();
+		
 	}
+	
 }
