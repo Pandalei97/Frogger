@@ -1,8 +1,10 @@
-package com.mygdx.frogger;
+package com.mygdx.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.mygdx.model.World;
+import com.mygdx.view.WorldRenderer;
 
 public class GameScreen implements Screen{
 	private World world;

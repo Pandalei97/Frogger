@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.mygdx.frogger;
+package com.mygdx.view;
 
 /**
  * @author pandalei

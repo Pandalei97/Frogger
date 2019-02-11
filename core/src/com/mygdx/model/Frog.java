@@ -1,4 +1,4 @@
-package com.mygdx.frogger;
+package com.mygdx.model;
 
 import com.badlogic.gdx.math.Vector2;
 
