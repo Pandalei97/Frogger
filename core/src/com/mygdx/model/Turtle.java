@@ -2,9 +2,9 @@ package com.mygdx.model;
 
 import com.badlogic.gdx.math.Vector2;
 
-public class Vehicle extends GameElement{
+public class Turtle extends GameElement{
 
-	public Vehicle(Vector2 position, World world) {
+	public Turtle(Vector2 position, World world) {
 		super(position, world);
 		// TODO Auto-generated constructor stub
 	}
@@ -12,13 +12,13 @@ public class Vehicle extends GameElement{
 	@Override
 	public float getWidth() {
 		// TODO Auto-generated method stub
-		return 200;
+		return 0;
 	}
 
 	@Override
 	public float getHeight() {
 		// TODO Auto-generated method stub
-		return 60;
+		return 0;
 	}
 
 }

@@ -10,15 +10,14 @@ public class World implements Iterable<GameElement>{
 	private Frog frog;
 	private GameElement turtle, wood, river, startPoint, road, dead, grass, destination, lotus;
 	private Fly fly;
-	private Vehicle vehicleBlue, vehiculeGreen, vehiculeYellow, vehiculeRed, vehiculeBrown;
+	private VehicleBlue vehicleBlue;
+	private VehicleGreen vehicleGreen;
 	public World(){
 		
 		fly = new Fly(new Vector2(20,630), this);
-		vehicleBlue = new Vehicle(new Vector2(0,30),this);
-		vehiculeGreen = new Vehicle(new Vector2(0,90),this); 
-		vehiculeYellow  = new Vehicle(new Vector2(0,150),this);
-		vehiculeRed  = new Vehicle(new Vector2(0,170),this);
-		vehiculeBrown  = new Vehicle(new Vector2(0,280),this);
+		vehicleBlue = new VehicleBlue(new Vector2(0,30),this);
+		vehicleGreen = new VehicleGreen(new Vector2(0,90),this); 
+		
 		frog = new Frog(new Vector2(0,0),this);
 	}
 	
@@ -26,25 +25,12 @@ public class World implements Iterable<GameElement>{
 		return fly;
 	}
 	
-	public Vehicle getVehicleBlue() {
+	public VehicleBlue getVehicleBlue() {
 		return vehicleBlue;
 	}
 
-	public Vehicle getVehiculeGreen() {
-		return vehiculeGreen;
-	}
-
-
-	public Vehicle getVehiculeYellow() {
-		return vehiculeYellow;
-	}
-
-	public Vehicle getVehiculeRed() {
-		return vehiculeRed;
-	}
-
-	public Vehicle getVehiculeBrown() {
-		return vehiculeBrown;
+	public VehicleGreen getVehiculeGreen() {
+		return vehicleGreen;
 	}
 	
 	public Frog getFrog() {
@@ -56,7 +42,7 @@ public class World implements Iterable<GameElement>{
 		ArrayList<GameElement> list = new ArrayList<GameElement>();
 		list.add(fly);
 		list.add(vehicleBlue);
-		list.add(vehiculeBrown);
+		list.add(vehicleGreen);
 		//return new WorldIterator(this);
 		return list.iterator();
 	}

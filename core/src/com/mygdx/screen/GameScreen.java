@@ -22,6 +22,7 @@ public class GameScreen implements Screen{
 	@Override
 	public void show() {
 		// TODO Auto-generated method stub
+		// called when this screen is set as the screen with game.setScreen();
 		
 	}
 
@@ -56,12 +57,14 @@ public class GameScreen implements Screen{
 	@Override
 	public void hide() {
 		// TODO Auto-generated method stub
+		// called when current screen changes from this to a different screen
 		
 	}
 
 	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
+		// never called automatically
 		
 	}
 
