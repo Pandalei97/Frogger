@@ -8,11 +8,9 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Fly extends GameElement{
 	private ArrayList<Vector2> positionsRefuges= new ArrayList<Vector2>();
-	private int movingTime;
 	
-	public Fly(Vector2 position, World world) {
-		super(position, world);
-		this.movingTime = 6;
+	public Fly(Vector2 position, World world, float frequency) {
+		super(position, world, frequency);
 		positionsRefuges.add(new Vector2(20,630));
 		positionsRefuges.add(new Vector2(150,630));
 		positionsRefuges.add(new Vector2(280,630));
@@ -26,10 +24,6 @@ public class Fly extends GameElement{
 	
 	public void MoveTo(Vector2 v) {
 		position.set(v);
-	}
-	
-	public int getMovingTime() {
-		return this.movingTime;
 	}
 	
 	public Vector2 getRandomPosition() {

@@ -1,3 +1,4 @@
-Frog 20 30
-VehicleGreen 50 80 1 1
-Fly 20 630
+Frog 275 0 0.5
+VehicleGreen 0 55 1 1
+VehicleRed 0 103 1 1
+Fly 20 630 4

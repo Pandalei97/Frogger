@@ -16,13 +16,14 @@ public class World implements Iterable<GameElement>{
 	private ArrayList<VehicleBlue> vehiclesBlue = new ArrayList<VehicleBlue>();
 	private ArrayList<VehicleBrown>vehiclesBrown;
 	private ArrayList<VehicleGreen> vehiclesGreen = new ArrayList<VehicleGreen>();
-	private ArrayList<VehicleRed>vehiclesRed;
+	private ArrayList<VehicleRed>vehiclesRed = new ArrayList<VehicleRed>();;
 	private ArrayList<VehicleYellow>vehiclesYellow;
 	private ArrayList<WoodLong>woodsLong;
 	private ArrayList<WoodMedium>woodsMedium;
 	private ArrayList<WoodShort>woodsShort;
 	
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public World(){
 		@SuppressWarnings("rawtypes")
 		HashMap<String, ArrayList> listeElem = null;
@@ -38,13 +39,16 @@ public class World implements Iterable<GameElement>{
 			donnees = entry.getValue();
 			switch(entry.getKey()) {
 			case "Frog":
-				frog = new Frog(new Vector2(donnees.get(0),donnees.get(1)),this);
+				frog = new Frog(new Vector2(donnees.get(0),donnees.get(1)),this, donnees.get(2));
 				break;
 			case "Fly":
-				fly = new Fly(new Vector2(donnees.get(0),donnees.get(1)),this);
+				fly = new Fly(new Vector2(donnees.get(0),donnees.get(1)),this, donnees.get(2));
 				break;
 			case "VehicleGreen":
 				vehiclesGreen.add(new VehicleGreen(new Vector2(donnees.get(0),donnees.get(1)),this,donnees.get(2),donnees.get(3)));
+				break;
+			case "VehicleRed":
+				vehiclesRed.add(new VehicleRed(new Vector2(donnees.get(0),donnees.get(1)),this,donnees.get(2),donnees.get(3)));
 				break;
 			}
 			
@@ -60,20 +64,17 @@ public class World implements Iterable<GameElement>{
 		return fly;
 	}
 	
-	@SuppressWarnings("rawtypes")
 	@Override
 	public Iterator<GameElement> iterator() {
 		ArrayList<GameElement> list = new ArrayList<GameElement>();
-		
-		
 		list.add(fly);
-		//list.add(vehicleBlue);
+		list.add(frog);
 		for(VehicleGreen e : vehiclesGreen) {
 			list.add(e);
 		}
-		//list.add(vehicleGreen);
-		list.add(frog);
-		//return new WorldIterator(this);
+		for(VehicleRed e : vehiclesRed) {
+			list.add(e);
+		}
 		return list.iterator();
 	}
 

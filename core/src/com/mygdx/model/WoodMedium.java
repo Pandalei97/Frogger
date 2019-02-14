@@ -2,10 +2,10 @@ package com.mygdx.model;
 
 import com.badlogic.gdx.math.Vector2;
 
-public class WoodMedium extends GameElement{
+public class WoodMedium extends GameElementLineaire{
 
-	public WoodMedium(Vector2 position, World world) {
-		super(position, world);
+	public WoodMedium(Vector2 position, World world, float frequency, float speed) {
+		super(position, world, frequency, speed);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -68,6 +68,7 @@ public class ConfigPos {
 	}
 	*/
 	
+	@SuppressWarnings("rawtypes")
 	public HashMap<String, ArrayList> getElements(){
 		return elements;
 	}

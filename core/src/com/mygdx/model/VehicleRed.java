@@ -2,10 +2,12 @@ package com.mygdx.model;
 
 import com.badlogic.gdx.math.Vector2;
 
-public class VehicleRed extends GameElement{
+public class VehicleRed extends GameElementLineaire{
 
-	public VehicleRed(Vector2 position, World world) {
-		super(position, world);
+	
+
+	public VehicleRed(Vector2 position, World world, float movingTime, float speed) {
+		super(position, world, movingTime, speed);
 		// TODO Auto-generated constructor stub
 	}
 
