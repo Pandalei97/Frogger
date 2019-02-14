@@ -2,23 +2,21 @@ package com.mygdx.model;
 
 import com.badlogic.gdx.math.Vector2;
 
-public class Turtle extends GameElement{
+public class Turtle extends GameElementLineaire{
 
-	public Turtle(Vector2 position, World world) {
-		super(position, world);
-		// TODO Auto-generated constructor stub
+
+	public Turtle(Vector2 position, World world, float movingTime, float speed) {
+		super(position, world, movingTime, speed);
 	}
 
 	@Override
 	public float getWidth() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 75;
 	}
 
 	@Override
 	public float getHeight() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 75;
 	}
 
 }

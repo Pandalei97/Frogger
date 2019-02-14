@@ -12,13 +12,13 @@ public class VehicleRed extends GameElement{
 	@Override
 	public float getWidth() {
 		// TODO Auto-generated method stub
-		return 182;
+		return 175;
 	}
 
 	@Override
 	public float getHeight() {
 		// TODO Auto-generated method stub
-		return 70;
+		return 65;
 	}
 
 }

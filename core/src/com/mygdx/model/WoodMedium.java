@@ -12,13 +12,13 @@ public class WoodMedium extends GameElement{
 	@Override
 	public float getWidth() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 273;
 	}
 
 	@Override
 	public float getHeight() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 57;
 	}
 
 }

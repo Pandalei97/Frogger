@@ -30,6 +30,7 @@ public class WorldRenderer {
 	
 	public void render (float delta) {
 		batch.begin();
+		
 		if(Gdx.input.isKeyPressed(Input.Keys.LEFT))
 			this.world.getFrog().MoveBy(-15, 0);
 		if(Gdx.input.isKeyPressed(Input.Keys.RIGHT))
@@ -44,24 +45,12 @@ public class WorldRenderer {
 			this.world.getFly().MoveTo(this.world.getFly().getRandomPosition());
 			timeToMove = 0;
 		}
-		/*
-		batch.draw(TextureFactory.getInstance().getFond(),0,0);
-		batch.draw(TextureFactory.getInstance().getTextureFrog(0),world.getFrog().getPosition().x, world.getFrog().getPosition().y);
-		batch.draw(TextureFactory.getInstance().getTextureFly(),world.getFly().getPosition().x, world.getFly().getPosition().y);
-		batch.draw(TextureFactory.getInstance().getTextureVehicle(0),world.getVehiculeRed().getPosition().x, world.getVehiculeRed().getPosition().y);
-		batch.draw(TextureFactory.getInstance().getTextureVehicle(1),world.getVehicleBlue().getPosition().x, world.getVehicleBlue().getPosition().y);
-		*/
 		
 		batch.draw(TextureFactory.getInstance().getFond(),0,0);
 		for (GameElement ge : world) {	// Render every element of world
-			if( !(ge.getClass().getName() == "models.GameElement") )
-				batch.draw(TextureFactory.getInstance().getTexture(ge.getClass()), ge.getPosition().x, ge.getPosition().y, ge.getWidth(), ge.getHeight());
+			batch.draw(TextureFactory.getInstance().getTexture(ge.getClass()), ge.getPosition().x, ge.getPosition().y, ge.getWidth(), ge.getHeight());
 		}
-		/*
-		for(GameElement e : world) {
-			//batch.draw(region, x, y, originX, originY, width, height, scaleX, scaleY, rotation);
-		}
-		*/
+		
 		batch.end();
 	}
 	

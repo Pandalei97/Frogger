@@ -12,13 +12,13 @@ public class WoodShort extends GameElement{
 	@Override
 	public float getWidth() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 187;
 	}
 
 	@Override
 	public float getHeight() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 56;
 	}
 
 	

@@ -39,12 +39,12 @@ public class Fly extends GameElement{
 	}
 	@Override
 	public float getWidth() {
-		return 60;
+		return 48;
 	}
 
 	@Override
 	public float getHeight() {
-		return 60;
+		return 54;
 	}
 	
 	
