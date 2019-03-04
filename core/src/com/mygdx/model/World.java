@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.mygdx.outils.Pair;
 
 public class World implements Iterable<GameElement>{
 	private Dead dead;
@@ -26,7 +27,7 @@ public class World implements Iterable<GameElement>{
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public World(){
 		@SuppressWarnings("rawtypes")
-		HashMap<String, ArrayList> listeElem = null;
+		ArrayList<Pair> listeElem = null;
 		try {
 			listeElem = ConfigPos.getInstance().getElements();
 		} catch (Exception e) {
@@ -35,9 +36,9 @@ public class World implements Iterable<GameElement>{
 		}
 		
 		ArrayList<Float> donnees;
-		for(Map.Entry<String, ArrayList> entry : listeElem.entrySet()) {
-			donnees = entry.getValue();
-			switch(entry.getKey()) {
+		for(Pair<String,ArrayList> obj : listeElem) {
+			donnees = obj.getValue();
+			switch(obj.getKey()) {
 			case "Frog":
 				frog = new Frog(new Vector2(donnees.get(0),donnees.get(1)),this, donnees.get(2));
 				break;
@@ -49,6 +50,9 @@ public class World implements Iterable<GameElement>{
 				break;
 			case "VehicleRed":
 				vehiclesRed.add(new VehicleRed(new Vector2(donnees.get(0),donnees.get(1)),this,donnees.get(2),donnees.get(3)));
+				break;
+			
+			default:
 				break;
 			}
 			
@@ -70,10 +74,12 @@ public class World implements Iterable<GameElement>{
 		list.add(fly);
 		list.add(frog);
 		for(VehicleGreen e : vehiclesGreen) {
+			System.out.println(e);
 			list.add(e);
 		}
-		for(VehicleRed e : vehiclesRed) {
-			list.add(e);
+		for(VehicleRed f : vehiclesRed) {
+			System.out.println(f);
+			list.add(f);
 		}
 		return list.iterator();
 	}

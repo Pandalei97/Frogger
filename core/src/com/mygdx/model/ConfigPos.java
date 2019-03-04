@@ -8,13 +8,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.mygdx.outils.Pair;
+
 public class ConfigPos {
 	private static ConfigPos INSTANCE = null;
 	@SuppressWarnings("rawtypes")
 	//private static HashMap<Class, ArrayList> elements = new HashMap<Class, ArrayList>();
-	private static HashMap<String, ArrayList> elements = new HashMap<String, ArrayList>();
+	private static ArrayList<Pair> elements = new ArrayList<Pair>();
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	ConfigPos(){
 		File fp = new File("position.txt");
 		BufferedReader br = null;
@@ -38,18 +40,12 @@ public class ConfigPos {
 					donnees.add(Float.valueOf(tab_info[i]));
 				}
 				System.out.println(donnees.toString());
-				
-				
-				//elements.put(Class.forName("com.mygdx.model."+tab_info[0]), (ArrayList<Float>) donnees.clone());
-				elements.put(tab_info[0], (ArrayList<Float>) donnees.clone());
+				elements.add(new Pair(tab_info[0],donnees.clone()));
 				donnees.clear();
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		} 
-		/*catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}*/
 		
 		System.out.println(elements.toString());
 		
@@ -61,15 +57,9 @@ public class ConfigPos {
 		return INSTANCE;
 	}
 	
-	/*
-	@SuppressWarnings("rawtypes")
-	public HashMap<Class, ArrayList> getElements(){
-		return elements;
-	}
-	*/
 	
 	@SuppressWarnings("rawtypes")
-	public HashMap<String, ArrayList> getElements(){
+	public ArrayList<Pair> getElements(){
 		return elements;
 	}
 	
