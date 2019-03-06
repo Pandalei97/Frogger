@@ -8,18 +8,15 @@ public class VehicleRed extends GameElementLineaire{
 
 	public VehicleRed(Vector2 position, World world, float movingTime, float speed) {
 		super(position, world, movingTime, speed);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public float getWidth() {
-		// TODO Auto-generated method stub
 		return 175;
 	}
 
 	@Override
 	public float getHeight() {
-		// TODO Auto-generated method stub
 		return 65;
 	}
 

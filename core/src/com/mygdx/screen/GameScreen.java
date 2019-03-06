@@ -13,6 +13,7 @@ public class GameScreen implements Screen{
 	public GameScreen() {
 		world = new World();
 		worldRenderer = new WorldRenderer(world);
+		//world.setContactListener(new WorldCo)
 	}
 	
 	public World getWorld() {
