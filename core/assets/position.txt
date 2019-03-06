@@ -1,14 +1,6 @@
-Frog 275 0 0.5
-VehicleGreen 90 55 1 1
-VehicleGreen 0 105 1 1.5
-VehicleGreen 0 160 1 2
-VehicleRed 0 55 1 1
+Frog 275 0 0.5 4
 VehicleRed 90 105 1 1.5
-VehicleRed 90 159 1 2
 VehicleYellow 145 215 1 1
-VehicleYellow 60 275 1 1
-Turtle 60 375 1 1
-Turtle 0 420 1 2
 WoodLong 145 530 1 1
 WoodShort 60 275 1 1
 Fly 20 630 4

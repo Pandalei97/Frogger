@@ -9,7 +9,7 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.width = 600;
-		config.height = 690;
+		config.height = 730;
 		new LwjglApplication(new FroggerGame(), config);
 	}
 }

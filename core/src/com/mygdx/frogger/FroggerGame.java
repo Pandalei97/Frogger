@@ -2,17 +2,18 @@ package com.mygdx.frogger;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.mygdx.screen.GameScreen;
+import com.badlogic.gdx.Screen;
+import com.mygdx.screen.MenuScreen;
 
 
 //Gestion du jeu
 public class FroggerGame extends Game {
 
-	private GameScreen currentScreen;
+	private Screen currentScreen;
 	
 	@Override
 	public void create () {
-		currentScreen = new GameScreen();
+		currentScreen = new MenuScreen(this);
 		setScreen(currentScreen);
 	}
 
@@ -27,4 +28,13 @@ public class FroggerGame extends Game {
 	public void dispose () {
 		
 	}
+	
+	public Screen getcurrentScreen() {
+		 return currentScreen;
+	 }
+	
+	public void setCurrentScreen(Screen screen) {
+		 currentScreen = screen;
+		 setScreen(currentScreen);
+	 }
 }

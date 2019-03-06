@@ -3,17 +3,20 @@ package com.mygdx.screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.mygdx.frogger.FroggerGame;
 import com.mygdx.model.World;
 import com.mygdx.view.WorldRenderer;
 
 public class GameScreen implements Screen{
 	private World world;
 	private WorldRenderer worldRenderer;
+	private FroggerGame game;
 	
-	public GameScreen() {
+	
+	public GameScreen(FroggerGame game) {
 		world = new World();
-		worldRenderer = new WorldRenderer(world);
-		//world.setContactListener(new WorldCo)
+		worldRenderer = new WorldRenderer(world,game);
+		this.game = game;
 	}
 	
 	public World getWorld() {
@@ -32,6 +35,11 @@ public class GameScreen implements Screen{
 		Gdx.gl.glClearColor(0, 0, 0, 0);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 	    this.worldRenderer.render(delta);
+	    if(this.worldRenderer.estTermine()) {
+	    	OverScreen screen = new OverScreen(game,worldRenderer.getNbVie(),worldRenderer.getScore());
+	    	game.setCurrentScreen(screen);
+	    }
+
 
 		
 		

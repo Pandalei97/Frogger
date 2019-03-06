@@ -1,31 +1,55 @@
 package com.mygdx.view;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.utils.Align;
+import com.mygdx.frogger.FroggerGame;
+import com.mygdx.model.Frog;
 import com.mygdx.model.GameElement;
 import com.mygdx.model.GameElementLineaire;
 import com.mygdx.model.World;
+import com.mygdx.screen.OverScreen;
 //Controller
 public class WorldRenderer {
 	private World world;
-	private SpriteBatch batch;
+	private FroggerGame game;
+	private SpriteBatch batch = new SpriteBatch();
 	private float timerFly = 0;
 	private float timerFrog = 0;
 	private int mouseX, mouseY;
 	private int moveH = 0, moveV = 0;
 	private ShapeRenderer grille = new ShapeRenderer();
+	private int score;
+	private int nbVie;
+	private BitmapFont scoreBitmap = new BitmapFont(false);
+	private BitmapFont vieBitmap = new BitmapFont(false);
+	private boolean termine;
 	
-	public WorldRenderer(World world) {
+	public WorldRenderer(World world, FroggerGame game) {
 		this.world = world;
-		this.batch = new SpriteBatch();
+		this.game = game;
+		//this.batch = new SpriteBatch();
+		score = 0;
+		nbVie = this.world.getNbVie();
+		termine = false;
+	}
+	
+	public int getNbVie() {
+		return nbVie;
 	}
 	
 	public void render (float delta) {
+		if(nbVie <= 0 || score >= 300)
+			termine = true;
+		
 		batch.begin();
 		timerFrog += Gdx.graphics.getDeltaTime();
 		
@@ -76,25 +100,21 @@ public class WorldRenderer {
 		
 		@Override
 		public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-			// TODO Auto-generated method stub
 			return false;
 		}
 
 		@Override
 		public boolean touchDragged(int screenX, int screenY, int pointer) {
-			// TODO Auto-generated method stub
 			return false;
 		}
 
 		@Override
 		public boolean mouseMoved(int screenX, int screenY) {
-			// TODO Auto-generated method stub
 			return false;
 		}
 
 		@Override
 		public boolean scrolled(int amount) {
-			// TODO Auto-generated method stub
 			return false;
 		}
 		
@@ -121,6 +141,8 @@ public class WorldRenderer {
 				this.world.getFrog().MoveBy(0, -1);
 				timerFrog = 0;
 			}
+			
+			
 				
 		}
 		
@@ -129,16 +151,26 @@ public class WorldRenderer {
 		if(timerFly > this.world.getFly().getFrequency()) {
 			this.world.getFly().MoveTo(this.world.getFly().getRandomPosition());
 			timerFly = 0;
+			
+			//TODO à enlever cet incrémentation, c'est pour tester
+			score += 100;
 		}
 		
 		batch.draw(TextureFactory.getInstance().getFond(),0,0);
 		GameElementLineaire temp;
+		//Frog tempFrog;
 		for (GameElement ge : world) {	// Render every element of world
+			//if(!(ge instanceof com.mygdx.model.Frog && (tempFrog = (Frog)ge).getNbVie() < nbVie))
 			batch.draw(TextureFactory.getInstance().getTexture(ge.getClass()), ge.getPosition().x, ge.getPosition().y, ge.getWidth()*0.7f, ge.getHeight()*0.7f);
 			if(ge instanceof GameElementLineaire) {
 				temp = (GameElementLineaire)ge;
 				temp.refreshPosition();
 				ge.setPosition(temp.getPosition().x, temp.getPosition().y);
+				if(ge.collisionner(this.world.getFrog().getZoneCollision())) {
+					this.world.getFrog().setPosition(0, 0);
+					nbVie --;
+				}
+					
 			}
 				
 		}
@@ -154,7 +186,34 @@ public class WorldRenderer {
 		
 		
 		batch.end();
+		renderInfo();
+		
 	}
+	
+	private void renderInfo() {
+		
+		batch.begin();
+		String textScore = "Score: ";
+		textScore += score;
+        scoreBitmap.setColor(Color.WHITE);
+        scoreBitmap.draw(batch, textScore, 70, 720);
+        
+        String textVie = "Vie: ";
+		textVie += nbVie;
+        vieBitmap.setColor(Color.WHITE);
+        vieBitmap.draw(batch, textVie, 350, 720);
+        batch.end();
+       
+    }
+
+	public int getScore() {
+		return score;
+	}
+	
+	public boolean estTermine() {
+		return termine;
+	}
+
 	
 
 }

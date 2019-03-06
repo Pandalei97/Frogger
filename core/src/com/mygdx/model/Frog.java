@@ -6,10 +6,12 @@ public class Frog extends GameElement{
 
 	private float speedVertical;
 	private float speedHorizontal;
-	public Frog(Vector2 position, World world, float frequency) {
+	private int nbVie;
+	public Frog(Vector2 position, World world, float frequency, int nbVie) {
 		super(position, world, frequency);
 		this.speedVertical = 53;
 		this.speedHorizontal = 67;
+		this.setNbVie(nbVie); 
 	}
 
 	public void MoveBy(int horiz, int verti) {
@@ -37,6 +39,14 @@ public class Frog extends GameElement{
 	@Override
 	public float getHeight() {
 		return 60;
+	}
+
+	public int getNbVie() {
+		return nbVie;
+	}
+
+	public void setNbVie(int nbVie) {
+		this.nbVie = nbVie;
 	}
 	
 

@@ -26,7 +26,6 @@ public class World implements Iterable<GameElement>{
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public World(){
-		@SuppressWarnings("rawtypes")
 		ArrayList<Pair> listeElem = null;
 		try {
 			listeElem = ConfigPos.getInstance().getElements();
@@ -43,7 +42,7 @@ public class World implements Iterable<GameElement>{
 				fly = new Fly(new Vector2(donnees.get(0),donnees.get(1)),this, donnees.get(2));
 				break;
 			case "Frog":
-				frog = new Frog(new Vector2(donnees.get(0),donnees.get(1)),this, donnees.get(2));
+				frog = new Frog(new Vector2(donnees.get(0),donnees.get(1)),this, donnees.get(2), (int)donnees.get(3).floatValue());
 				break;
 			case "Turtle":
 				turtles.add(new Turtle(new Vector2(donnees.get(0),donnees.get(1)),this, donnees.get(2),donnees.get(3)));
@@ -79,7 +78,6 @@ public class World implements Iterable<GameElement>{
 			
 		}
 		
-		
 	}
 	
 	public Frog getFrog() {
@@ -88,6 +86,10 @@ public class World implements Iterable<GameElement>{
 	
 	public Fly getFly() {
 		return fly;
+	}
+	
+	public int getNbVie() {
+		return frog.getNbVie();
 	}
 	
 	@Override

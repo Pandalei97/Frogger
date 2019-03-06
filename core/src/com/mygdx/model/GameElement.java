@@ -1,5 +1,6 @@
 package com.mygdx.model;
 
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public abstract class GameElement {
@@ -27,8 +28,15 @@ public abstract class GameElement {
 		return frequency;
 	}
 	
-	
 	public abstract float getWidth();
 	public abstract float getHeight();
+	
+	public Rectangle getZoneCollision() {
+		return new Rectangle(position.x, position.y, getWidth()*0.7f, getHeight()*0.7f);
+	}
+	
+	public boolean collisionner(Rectangle player) {
+		return player.overlaps(getZoneCollision());
+	}
 	
 }
