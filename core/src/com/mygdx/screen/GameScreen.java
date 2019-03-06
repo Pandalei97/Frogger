@@ -15,7 +15,7 @@ public class GameScreen implements Screen{
 	
 	public GameScreen(FroggerGame game) {
 		world = new World();
-		worldRenderer = new WorldRenderer(world,game);
+		worldRenderer = new WorldRenderer(world);
 		this.game = game;
 	}
 	
@@ -39,10 +39,6 @@ public class GameScreen implements Screen{
 	    	OverScreen screen = new OverScreen(game,worldRenderer.getNbVie(),worldRenderer.getScore());
 	    	game.setCurrentScreen(screen);
 	    }
-
-
-		
-		
 	}
 
 	@Override

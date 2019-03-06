@@ -13,6 +13,13 @@ public class Frog extends GameElement{
 		this.speedHorizontal = 67;
 		this.setNbVie(nbVie); 
 	}
+	
+	public Frog(Frog f) {
+		super(f.position,f.world,f.frequency);
+		this.speedVertical = f.speedVertical;
+		this.speedHorizontal = f.speedHorizontal;
+		this.nbVie = f.nbVie;
+	}
 
 	public void MoveBy(int horiz, int verti) {
 		

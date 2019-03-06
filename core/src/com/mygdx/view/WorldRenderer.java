@@ -1,6 +1,7 @@
 package com.mygdx.view;
 
-import com.badlogic.gdx.Game;
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Buttons;
@@ -10,17 +11,16 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
-import com.badlogic.gdx.utils.Align;
 import com.mygdx.frogger.FroggerGame;
-import com.mygdx.model.Frog;
 import com.mygdx.model.GameElement;
 import com.mygdx.model.GameElementLineaire;
+import com.mygdx.model.Turtle;
+import com.mygdx.model.Frog;
 import com.mygdx.model.World;
-import com.mygdx.screen.OverScreen;
 //Controller
 public class WorldRenderer {
 	private World world;
-	private FroggerGame game;
+	//private FroggerGame game;
 	private SpriteBatch batch = new SpriteBatch();
 	private float timerFly = 0;
 	private float timerFrog = 0;
@@ -32,14 +32,18 @@ public class WorldRenderer {
 	private BitmapFont scoreBitmap = new BitmapFont(false);
 	private BitmapFont vieBitmap = new BitmapFont(false);
 	private boolean termine;
-	
-	public WorldRenderer(World world, FroggerGame game) {
+	private ArrayList<Frog> frogRefuge = new ArrayList<Frog>();
+	private Frog frogActuel;
+	private Frog frog2;
+	public WorldRenderer(World world) {
 		this.world = world;
-		this.game = game;
+		//this.game = game;
 		//this.batch = new SpriteBatch();
 		score = 0;
 		nbVie = this.world.getNbVie();
 		termine = false;
+		initFrog();
+		frog2 = new Frog(frogActuel);
 	}
 	
 	public int getNbVie() {
@@ -47,7 +51,11 @@ public class WorldRenderer {
 	}
 	
 	public void render (float delta) {
-		if(nbVie <= 0 || score >= 300)
+		if(score == 200 || score == 400) {
+			frogRefuge.add(new Frog(frogActuel));
+			initFrog();
+		}
+		if(nbVie <= 0 || score >= 800)
 			termine = true;
 		
 		batch.begin();
@@ -121,24 +129,30 @@ public class WorldRenderer {
 	});
 		
 		
-		this.world.getFrog().MoveBy(moveH, moveV);
+		//this.world.getFrog().MoveBy(moveH, moveV);
+		frogActuel.MoveBy(moveH, moveV);
 		moveH = 0;
 		moveV = 0;
-		if(timerFrog > this.world.getFrog().getFrequency()) {
+		//if(timerFrog > this.world.getFrog().getFrequency()) {
+		if(timerFrog > frogActuel.getFrequency()) {
 			if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-				this.world.getFrog().MoveBy(-1, 0);
+				//this.world.getFrog().MoveBy(-1, 0);
+				frogActuel.MoveBy(-1, 0);
 				timerFrog = 0;
 			}
 			if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-				this.world.getFrog().MoveBy(1, 0);
+				//this.world.getFrog().MoveBy(1, 0);
+				frogActuel.MoveBy(1, 0);
 				timerFrog = 0;
 			}
 			if(Gdx.input.isKeyPressed(Input.Keys.UP)) {
-				this.world.getFrog().MoveBy(0, 1);
+				//this.world.getFrog().MoveBy(0, 1);
+				frogActuel.MoveBy(0, 1);
 				timerFrog = 0;
 			}
 			if(Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-				this.world.getFrog().MoveBy(0, -1);
+				//this.world.getFrog().MoveBy(0, -1);
+				frogActuel.MoveBy(0, -1);
 				timerFrog = 0;
 			}
 			
@@ -158,22 +172,31 @@ public class WorldRenderer {
 		
 		batch.draw(TextureFactory.getInstance().getFond(),0,0);
 		GameElementLineaire temp;
-		//Frog tempFrog;
+		batch.draw(TextureFactory.getInstance().getTexture(frogActuel.getClass()), frogActuel.getPosition().x, frogActuel.getPosition().y, frogActuel.getWidth()*0.7f, frogActuel.getHeight()*0.7f);
 		for (GameElement ge : world) {	// Render every element of world
-			//if(!(ge instanceof com.mygdx.model.Frog && (tempFrog = (Frog)ge).getNbVie() < nbVie))
-			batch.draw(TextureFactory.getInstance().getTexture(ge.getClass()), ge.getPosition().x, ge.getPosition().y, ge.getWidth()*0.7f, ge.getHeight()*0.7f);
+			if(!(ge instanceof com.mygdx.model.Frog))
+				batch.draw(TextureFactory.getInstance().getTexture(ge.getClass()), ge.getPosition().x, ge.getPosition().y, ge.getWidth()*0.7f, ge.getHeight()*0.7f);
 			if(ge instanceof GameElementLineaire) {
 				temp = (GameElementLineaire)ge;
 				temp.refreshPosition();
 				ge.setPosition(temp.getPosition().x, temp.getPosition().y);
-				if(ge.collisionner(this.world.getFrog().getZoneCollision())) {
-					this.world.getFrog().setPosition(0, 0);
+				//if(ge.collisionner(this.world.getFrog().getZoneCollision())) {
+				if(ge.collisionner(frogActuel.getZoneCollision())) {
+					frogActuel.setPosition(0, 0);
 					nbVie --;
 				}
 					
 			}
 				
 		}
+		
+		for (Frog f : frogRefuge) {
+			batch.draw(TextureFactory.getInstance().getTexture(f.getClass()), f.getPosition().x, f.getPosition().y, f.getWidth()*0.7f, f.getHeight()*0.7f);
+		}
+		
+		//batch.draw(TextureFactory.getInstance().getTexture(frog2.getClass()), 0, 0, 0, 0);
+		
+		
 		
 		grille.begin(ShapeType.Line);
 		grille.setColor(1,0,0,1);
@@ -212,6 +235,10 @@ public class WorldRenderer {
 	
 	public boolean estTermine() {
 		return termine;
+	}
+	
+	public void initFrog() {
+		frogActuel = this.world.getFrog();
 	}
 
 	
