@@ -7,8 +7,10 @@ public class Frog extends GameElement{
 	private float speedVertical;
 	private float speedHorizontal;
 	private int nbVie;
+	private Vector2 posInit;
 	public Frog(Vector2 position, World world, float frequency, int nbVie) {
 		super(position, world, frequency);
+		this.posInit = new Vector2(position);
 		this.speedVertical = 53;
 		this.speedHorizontal = 67;
 		this.setNbVie(nbVie); 
@@ -54,6 +56,10 @@ public class Frog extends GameElement{
 
 	public void setNbVie(int nbVie) {
 		this.nbVie = nbVie;
+	}
+	
+	public Vector2 getPositionInitial() {
+		return posInit;
 	}
 	
 

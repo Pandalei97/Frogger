@@ -98,39 +98,39 @@ public class World implements Iterable<GameElement>{
 		list.add(fly);
 		list.add(frog);
 		for(Turtle e : turtles) {
-			System.out.println(e);
+			//System.out.println(e);
 			list.add(e);
 		}
 		for(VehicleBlue e : vehiclesBlue) {
-			System.out.println(e);
+			//System.out.println(e);
 			list.add(e);
 		}
 		for(VehicleBrown e : vehiclesBrown) {
-			System.out.println(e);
+			//System.out.println(e);
 			list.add(e);
 		}
 		for(VehicleGreen e : vehiclesGreen) {
-			System.out.println(e);
+			//System.out.println(e);
 			list.add(e);
 		}
 		for(VehicleRed e : vehiclesRed) {
-			System.out.println(e);
+			//System.out.println(e);
 			list.add(e);
 		}
 		for(VehicleYellow e : vehiclesYellow) {
-			System.out.println(e);
+			//System.out.println(e);
 			list.add(e);
 		}
 		for(WoodLong e : woodsLong) {
-			System.out.println(e);
+			//System.out.println(e);
 			list.add(e);
 		}
 		for(WoodMedium e : woodsMedium) {
-			System.out.println(e);
+			//System.out.println(e);
 			list.add(e);
 		}
 		for(WoodShort e : woodsShort) {
-			System.out.println(e);
+			//System.out.println(e);
 			list.add(e);
 		}
 		return list.iterator();
