@@ -62,5 +62,13 @@ public class Frog extends GameElement{
 		return posInit;
 	}
 	
+	public void refreshPosition(float frequency, float speed) {
+		position.x += frequency * speed;
+		if(position.x < 0)
+			position.x = 0;
+		if(position.x > 67*8)
+			position.x = 67*8; 
+	}
+	
 
 }

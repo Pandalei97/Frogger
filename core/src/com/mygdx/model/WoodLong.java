@@ -2,7 +2,7 @@ package com.mygdx.model;
 
 import com.badlogic.gdx.math.Vector2;
 
-public class WoodLong extends GameElementLineaire{
+public class WoodLong extends Wood{
 
 	public WoodLong(Vector2 position, World world, float frequency, float speed) {
 		super(position, world, frequency, speed);
@@ -18,7 +18,7 @@ public class WoodLong extends GameElementLineaire{
 	@Override
 	public float getHeight() {
 		// TODO Auto-generated method stub
-		return 58;
+		return 60;
 	}
 
 }

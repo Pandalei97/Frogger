@@ -2,7 +2,7 @@ package com.mygdx.model;
 
 import com.badlogic.gdx.math.Vector2;
 
-public class WoodShort extends GameElementLineaire{
+public class WoodShort extends Wood{
 
 	public WoodShort(Vector2 position, World world, float frequency, float speed) {
 		super(position, world, frequency, speed);

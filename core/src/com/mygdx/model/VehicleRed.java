@@ -2,7 +2,7 @@ package com.mygdx.model;
 
 import com.badlogic.gdx.math.Vector2;
 
-public class VehicleRed extends GameElementLineaire{
+public class VehicleRed extends Vehicle{
 
 	
 

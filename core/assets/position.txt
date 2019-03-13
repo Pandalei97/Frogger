@@ -2,6 +2,9 @@ Frog 275 0 0.5 4
 VehicleRed 90 105 1 1.5
 VehicleYellow 145 215 1 1
 WoodLong 145 530 1 1
-WoodLong 145 380 1 0.5
+WoodLong 145 367 1 0.5
+WoodLong 145 420 1 0.5
+WoodLong 145 473 1 0.5
 WoodShort 60 275 1 1
+Turtle 80 530 1 1
 Fly 20 630 4
